@@ -1,1 +1,4 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+This is a Weather Application that displays Weather details of different cities.
+
+Link for Vercel App:
+https://weather-app-nine-mauve.vercel.app/
