@@ -85,6 +85,7 @@
 
 .bgimage{
   filter: opacity(0.6) drop-shadow(0 0 rgb(27, 2, 2));
+  min-height: 750px;
 }
 
 @media (max-width: 600px) {
