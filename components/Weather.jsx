@@ -2,7 +2,6 @@ import React from 'react'
 import Image from 'next/image'
 
 function Weather({data}) {
-    console.log(data)
   return (
     <div className='z-[20] container mx-auto px-[15%] relative flex flex-col justify-between max-w-[500] w-full h-[60vh] m-auto p-4'>
         <div className='relative flex justify-between lg:pt-12'>

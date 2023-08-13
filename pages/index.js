@@ -7,32 +7,42 @@ import Image from 'next/image';
 import 'tailwindcss/tailwind.css';
 import Weather from '../components/Weather';
 import Spinner from '../components/Spinner';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchWeatherData } from '../store/actions/WeatherActions';
 
 export default function Home() {
 
   const [city,setCity] = useState('')
-  const [weather,setWeather] = useState({})
-  const [loading,setLoading] = useState(false)
-  const [error,setError] = useState('')
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`
+  const dispatch = useDispatch();
+  const {weatherData,loading,error} = useSelector((state) => state.weather);
 
-  const fetchWeather = async (e) => {
-    e.preventDefault()
-    setError('')
-    setWeather({})
-    setLoading(true)
-    try{
-    await axios.get(url).then((response)=>{
-       setWeather(response.data)
-      //console.log(response.data)
-    })
-    }catch{
-      setError('City name not valid')
-    }
-     setCity('')
-    setLoading(false)
-  }
+
+  const fetchWeather = (e) => {
+    e.preventDefault();
+    dispatch(fetchWeatherData(city));
+  };
+
+  console.log(weatherData)
+
+  // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`
+
+  // const fetchWeather = async (e) => {
+  //   e.preventDefault()
+  //   setError('')
+  //   setWeather({})
+  //   setLoading(true)
+  //   try{
+  //   await axios.get(url).then((response)=>{
+  //      setWeather(response.data)
+  //     //console.log(response.data)
+  //   })
+  //   }catch{
+  //     setError('City name not valid')
+  //   }
+  //    setCity('')
+  //   setLoading(false)
+  // }
 
   if (loading){
     return <Spinner/>
@@ -64,8 +74,8 @@ export default function Home() {
       </div>
 
       {/* Weather */}
-      {/* <Weather data={weather} /> */}
-      {weather.main && <Weather data={weather}/>}
+      {/* <Weather data={weatherData}/> */}
+      {weatherData.main && <Weather data={weatherData}/>}
       
     </div>
   )
