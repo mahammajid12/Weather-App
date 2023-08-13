@@ -21,7 +21,7 @@ function Weather({data}) {
             <div className='flex flex-wrap justify-between flex-center text-white px-[10%]'>
                 <div>
                     <p className='text-xl'>Feels Like</p>
-                    <p className='font-bold text-3xl'>{data.main.feels_like}&#176;</p>
+                    <p className='font-bold text-3xl'>{data.main.feels_like.toFixed(0)}&#176;</p>
                 </div>
                 <div>
                     <p className='text-xl'>Humidity</p>
